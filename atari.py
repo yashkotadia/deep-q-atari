@@ -185,6 +185,7 @@ if args.train:
                 if DQA.training_count % args.avg_val_computation_freq == 0 and DQA.training_count >= args.avg_val_computation_freq:
                     logger.to_csv(test_csv,
                                   [np.mean(test_scores), np.mean(test_mean_q)])
+                    wandb.log({'mean_score': np.mean(test_scores)})
                     del test_scores[:]
                     del test_mean_q[:]
 
@@ -222,6 +223,17 @@ if args.train:
                 test_mean_q.append(np.mean(test_q_values))
 
         episode += 1
+
+        # render gameplay video
+        if (i %50 == 0):
+            mp4list = glob.glob('video/*.mp4')
+            if len(mp4list) > 0:
+                mp4 = mp4list[-1]
+                video = io.open(mp4, 'r+b').read()
+                encoded = base64.b64encode(video)
+
+                # log gameplay video in wandb
+                wandb.log({"gameplays": wandb.Video(mp4, fps=4, format="gif")})
 
 if args.eval:
     logger.log(evaluate(DQA, args, logger))
