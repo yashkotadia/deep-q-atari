@@ -185,7 +185,6 @@ if args.train:
                 if DQA.training_count % args.avg_val_computation_freq == 0 and DQA.training_count >= args.avg_val_computation_freq:
                     logger.to_csv(test_csv,
                                   [np.mean(test_scores), np.mean(test_mean_q)])
-                    wandb.log({'mean_score': np.mean(test_scores)})
                     del test_scores[:]
                     del test_mean_q[:]
 
@@ -201,6 +200,7 @@ if args.train:
             if done or t == args.max_episode_length - 1:
                 logger.to_csv(training_csv, [t, score])
                 logger.log("Length: %d; Score: %d\n" % (t + 1, score))
+                wandb.log({'score': score, 'episode': episode})
                 break
 
             t += 1
