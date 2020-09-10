@@ -225,7 +225,7 @@ if args.train:
         episode += 1
 
         # render gameplay video
-        if (i %50 == 0):
+        if (episode %50 == 0):
             mp4list = glob.glob('video/*.mp4')
             if len(mp4list) > 0:
                 mp4 = mp4list[-1]
