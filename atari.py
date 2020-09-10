@@ -222,8 +222,6 @@ if args.train:
                 test_q_values = [DQA.get_max_q(state) for state in test_states]
                 test_mean_q.append(np.mean(test_q_values))
 
-        episode += 1
-
         # render gameplay video
         if (episode %50 == 0):
             mp4list = glob.glob('video/*.mp4')
@@ -234,6 +232,8 @@ if args.train:
 
                 # log gameplay video in wandb
                 wandb.log({"gameplays": wandb.Video(mp4, fps=4, format="gif")})
+
+        episode += 1
 
 if args.eval:
     logger.log(evaluate(DQA, args, logger))
