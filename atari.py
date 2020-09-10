@@ -9,8 +9,6 @@ from evaluation import evaluate
 from Logger import Logger
 import wandb
 import glob
-import io
-import base64
 
 def exit_handler():
     global DQA
@@ -226,12 +224,10 @@ if args.train:
                 test_mean_q.append(np.mean(test_q_values))
 
         # render gameplay video
-        if (episode %50 == 0):
+        if (episode %10 == 0):
             mp4list = glob.glob('video/*.mp4')
-            if len(mp4list) > 0:
-                mp4 = mp4list[-1]
-                video = io.open(mp4, 'r+b').read()
-                encoded = base64.b64encode(video)
+            if len(mp4list) > 1:
+                mp4 = mp4list[-2]
 
                 # log gameplay video in wandb
                 wandb.log({"gameplays": wandb.Video(mp4, fps=4, format="gif")})
