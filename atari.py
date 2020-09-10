@@ -7,7 +7,7 @@ import utils
 from DQAgent import DQAgent
 from evaluation import evaluate
 from Logger import Logger
-
+import wandb
 
 def exit_handler():
     global DQA
@@ -95,8 +95,12 @@ test_scores = []
 test_mean_q = []
 test_states = []
 
+# WandB
+wandb.init(project='rl-example', config=args)
+
 # Setup
 env = gym.make(args.environment)
+env = gym.wrappers.Monitor(env, './video', force=True)
 network_input_shape = (4, 110, 84)  # Dimension ordering: 'th' (channels first)
 DQA = DQAgent(env.action_space.n,
               network_input_shape,
