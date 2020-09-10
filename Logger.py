@@ -26,27 +26,27 @@ class Logger:
             try:
                 logfile = open(self.path + 'log.txt', 'a')
             except IOError:
-                print 'Logger:log IO error while opening log file %s' % self.path + 'log.txt'
+                print('Logger:log IO error while opening log file %s' % self.path + 'log.txt')
                 return
             if type(data) is dict:
                 for k in data:
                     logfile.write(k + ': ' + str(data[k]) + '\n')
-                    print k + ': ' + str(data[k])
+                    print(k + ': ' + str(data[k]))
             elif type(data) is tuple:
                 logfile.write(data[0] + ': ' + str(data[1]) + '\n')
             elif type(data) is str:
                 logfile.write(data + '\n')
             elif type(data) is list:
                 logfile.write(','.join(str(elem) for elem in data) + '\n')
-        print data
+        print(data)
 
     def to_csv(self, filename, row):
         if not self.debug:
             try:
                 f = open(self.path + filename, 'a')
             except IOError:
-                print 'Logger:to_csv IO error while opening file %s' % \
-                      self.path + filename
+                print('Logger:to_csv IO error while opening file %s' % \
+                      self.path + filename)
                 return
             if type(row) is list:
                 string = ','.join([str(val) for val in row])

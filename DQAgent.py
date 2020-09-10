@@ -137,8 +137,8 @@ class DQAgent:
         Trains the DQN on a minibatch of transitions.
         """
         self.training_count += 1
-        print 'Training session #%d - epsilon: %f' % \
-              (self.training_count, self.epsilon)
+        print('Training session #%d - epsilon: %f' % \
+              (self.training_count, self.epsilon))
         batch = self.sample_batch()
         self.DQN.train(batch, self.DQN_target)  # Train the DQN
 

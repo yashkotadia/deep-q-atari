@@ -83,9 +83,9 @@ parser.add_argument('--test-states', type=int, default=30,
 args = parser.parse_args()
 
 if args.debug:
-    print '####################################################' \
+    print('####################################################' \
           'WARNING: debug flag is set, output will not be saved' \
-          '####################################################'
+          '####################################################')
 
 logger = Logger(debug=args.debug, append=args.environment)
 atexit.register(exit_handler)  # Make sure to always save the model when exiting
