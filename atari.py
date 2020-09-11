@@ -101,7 +101,7 @@ wandb.init(project='rl-example', config=args)
 
 # Setup
 env = gym.make(args.environment)
-env = gym.wrappers.Monitor(env, './video', force=True)
+env = gym.wrappers.Monitor(env, './video', video_callable=lambda x: x%10==0, episode=True, force=True)
 network_input_shape = (4, 110, 84)  # Dimension ordering: 'th' (channels first)
 DQA = DQAgent(env.action_space.n,
               network_input_shape,
@@ -230,7 +230,7 @@ if args.train:
                 mp4 = mp4list[-2]
 
                 # log gameplay video in wandb
-                wandb.log({"gameplays": wandb.Video(mp4, fps=4, format="gif")})
+                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode), fps=4, format="gif")})
 
         episode += 1
 
