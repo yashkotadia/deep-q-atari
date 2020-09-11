@@ -101,7 +101,7 @@ wandb.init(project='rl-example', config=args)
 
 # Setup
 env = gym.make(args.environment)
-env = gym.wrappers.Monitor(env, './video', video_callable=lambda x: x%10==0, episode=True, force=True)
+env = gym.wrappers.Monitor(env, './video', video_callable=lambda x: x%10==0, force=True)
 network_input_shape = (4, 110, 84)  # Dimension ordering: 'th' (channels first)
 DQA = DQAgent(env.action_space.n,
               network_input_shape,
