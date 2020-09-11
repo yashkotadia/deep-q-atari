@@ -226,11 +226,11 @@ if args.train:
         # render gameplay video
         if (episode %10 == 0):
             mp4list = glob.glob('video/*.mp4')
-            if len(mp4list) > 0:
-                mp4 = mp4list[-1]
+            if len(mp4list) > 1:
+                mp4 = mp4list[-2]
 
                 # log gameplay video in wandb
-                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode), fps=4, format="gif")})
+                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif")})
 
         episode += 1
 
