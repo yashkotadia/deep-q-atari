@@ -201,7 +201,7 @@ if args.train:
             if done or t == args.max_episode_length - 1:
                 logger.to_csv(training_csv, [t, score])
                 logger.log("Length: %d; Score: %d\n" % (t + 1, score))
-                wandb.log({'score': score, 'episode': episode})
+                wandb.log({'score': score, 'episode': episode}, step=episode)
                 break
 
             t += 1
@@ -230,7 +230,7 @@ if args.train:
                 mp4 = mp4list[-2]
 
                 # log gameplay video in wandb
-                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif")})
+                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif")}, step=episode-10)
 
         episode += 1
 
