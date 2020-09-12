@@ -230,7 +230,7 @@ if args.train:
                 mp4 = mp4list[-2]
 
                 # log gameplay video in wandb
-                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif")}, step=episode-10)
+                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif"), "step"=episode})
 
         episode += 1
 
