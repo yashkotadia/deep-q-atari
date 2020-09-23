@@ -9,6 +9,7 @@ from evaluation import evaluate
 from Logger import Logger
 import wandb
 import glob
+import time
 
 def exit_handler():
     global DQA
@@ -224,7 +225,8 @@ if args.train:
                 test_mean_q.append(np.mean(test_q_values))
 
         # render gameplay video
-        if (episode %1 == 0):
+        if (episode %10 == 0):
+            time.sleep(10)
             mp4list = glob.glob('video/*.mp4')
             if len(mp4list) > 1:
                 mp4 = mp4list[-1]
