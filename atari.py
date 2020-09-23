@@ -203,7 +203,6 @@ if args.train:
                 logger.to_csv(training_csv, [t, score])
                 logger.log("Length: %d; Score: %d\n" % (t + 1, score))
                 wandb.log({'score': score, 'episode': episode}, step=episode)
-                time.sleep(10)
                 break
 
             t += 1
@@ -226,13 +225,14 @@ if args.train:
                 test_mean_q.append(np.mean(test_q_values))
 
         # render gameplay video
-        if (episode %10 == 0):
+        if (episode %1 == 0):
+            time.sleep(10)
             mp4list = glob.glob('video/*.mp4')
             if len(mp4list) > 0:
                 mp4 = mp4list[-1]
 
                 # log gameplay video in wandb
-                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif"), "step": episode})
+                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode), fps=4, format="gif"), "step": episode})
 
         episode += 1
 
