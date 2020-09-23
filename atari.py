@@ -9,6 +9,7 @@ from evaluation import evaluate
 from Logger import Logger
 import wandb
 import glob
+import time
 
 def exit_handler():
     global DQA
@@ -202,7 +203,7 @@ if args.train:
                 logger.to_csv(training_csv, [t, score])
                 logger.log("Length: %d; Score: %d\n" % (t + 1, score))
                 wandb.log({'score': score, 'episode': episode}, step=episode)
-                sleep(10)
+                time.sleep(10)
                 break
 
             t += 1
