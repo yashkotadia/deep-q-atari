@@ -9,7 +9,6 @@ from evaluation import evaluate
 from Logger import Logger
 import wandb
 import glob
-import time
 
 def exit_handler():
     global DQA
@@ -226,13 +225,12 @@ if args.train:
 
         # render gameplay video
         if (episode %10 == 0):
-            time.sleep(10)
             mp4list = glob.glob('video/*.mp4')
             if len(mp4list) > 1:
-                mp4 = mp4list[-1]
+                mp4 = mp4list[-2]
 
                 # log gameplay video in wandb
-                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode), fps=4, format="gif"), "step": episode})
+                wandb.log({"gameplays": wandb.Video(mp4, caption='episode: '+str(episode-10), fps=4, format="gif"), "step": episode})
 
         episode += 1
 
