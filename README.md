@@ -27,6 +27,9 @@ your research:
 }
 ```
 
+## Run on Colab
+You can play with this repo on [Colab](https://colab.research.google.com/drive/1lZT-t2eV96uDNftr7ojcvMyqamSabKh1?usp=sharing)
+
 ## Setup
 To run the script you'll need the following dependencies:
 - [Keras](http://keras.io/#installation)
