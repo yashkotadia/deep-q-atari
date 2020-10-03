@@ -1,16 +1,15 @@
 # Deep Q-learning for Atari Games
 This is an implementation in Keras and OpenAI Gym of the Deep Q-Learning
 algorithm (often referred to as Deep Q-Network, or DQN) by Mnih et al.
-on the well known Atari games.
+on the well known Atari games. 
+
+The repository has been forked from [Daniel Grattola's implementation](https://github.com/danielegrattarola/deep-q-atari).
   
 Rather than a pre-packaged tool to simply see the agent playing the game,
 this is a model that needs to be trained and fine tuned by hand and has
 more of an educational value.
 This code tries to replicate the experimental setup described in
 [the original DeepMind paper](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf).
-
-A similar project on Deep Q-Learning applied to videogames can be found
-on [this repo of mine](https://github.com/danielegrattarola/deep-q-snake).
 
 ## Acknowledgments
 Make sure to cite the paper by Mnih et al. if you use this code for
@@ -28,16 +27,6 @@ your research:
 }
 ```
 
-and remember to give me a shoutout by linking to my
-[Github profile](https://github.com/danielegrattarola),
-[blog](https://danielegrattarola.github.io), or
-[Twitter](https://twitter.com/riceasphait).
-
-A big thank you to Carlo D'Eramo
-([@carloderamo](https://github.com/carloderamo)), who helped me
-develop this code and spent a good amount of time debugging in the
-beginning.
-
 ## Setup
 To run the script you'll need the following dependencies:
 - [Keras](http://keras.io/#installation)
@@ -49,7 +38,7 @@ which should all be available through Pip.
   
 No additional setup is needed, so simply clone the repo:
 ```sh
-git clone https://gitlab.com/danielegrattarola/deep-q-atari.git
+git clone https://gitlab.com/yashkotadia/deep-q-atari.git
 cd deep-q-atari
 ```  
   
@@ -134,3 +123,5 @@ DQN and target DQN (both files will be saved when the script quits or is killed
 with `ctrl+c`). You can pass any of these files as argument with the `--load` 
 flag to initialize a new DQN with these weights (Note: the DQN architecture must
 be unchanged for this to work);
+
+The output can also be visualized on the WandB project dashboard.
